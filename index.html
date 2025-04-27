@@ -1,0 +1,180 @@
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Galería de Memes</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f0f0f0;
+      margin: 0;
+      padding: 0;
+      text-align: center;
+      transition: background-color 0.3s, color 0.3s;
+    }
+    header {
+      background-color: #ff6f61;
+      color: white;
+      padding: 20px;
+    }
+    .gallery, .popular {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 20px;
+      padding: 20px;
+    }
+    .gallery img, .popular img {
+      width: 100%;
+      border-radius: 10px;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+      transition: transform 0.2s;
+    }
+    .gallery img:hover, .popular img:hover {
+      transform: scale(1.05);
+    }
+    .new-meme {
+      animation: fadeIn 0.8s ease-in-out;
+    }
+    @keyframes fadeIn {
+      from { opacity: 0; transform: scale(0.8); }
+      to { opacity: 1; transform: scale(1); }
+    }
+    footer {
+      background-color: #222;
+      color: white;
+      padding: 10px;
+      font-size: 14px;
+    }
+    .dark-mode {
+      background-color: #121212;
+      color: #e0e0e0;
+    }
+    .dark-mode header {
+      background-color: #333;
+    }
+    .dark-mode footer {
+      background-color: #111;
+    }
+    button, input[type="text"] {
+      margin: 10px;
+      padding: 10px 20px;
+      font-size: 16px;
+      border: none;
+      border-radius: 5px;
+      background-color: #ff6f61;
+      color: white;
+      cursor: pointer;
+      transition: background-color 0.3s;
+    }
+    button:hover, input[type="text"]:hover {
+      background-color: #e65b50;
+    }
+    input[type="text"] {
+      background-color: white;
+      color: black;
+      border: 1px solid #ccc;
+    }
+    h2 {
+      margin-top: 40px;
+      color: #ff6f61;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>Galería de Memes</h1>
+    <p>¡Ríe sin parar con nuestros mejores memes!</p>
+    <button onclick="toggleDarkMode()">🌙 Modo Oscuro</button>
+    <button onclick="loadRandomMeme()">🎲 Cargar Meme Aleatorio</button>
+    <br>
+    <input type="text" id="searchInput" placeholder="Buscar memes..." onkeyup="searchMemes()">
+  </header>
+
+  <h2>Memes Populares</h2>
+  <section class="popular" id="popular">
+    <img src="https://i.imgflip.com/1bij.jpg" alt="One Does Not Simply">
+    <img src="https://i.imgflip.com/26am.jpg" alt="Grumpy Cat">
+    <img src="https://i.imgflip.com/2fm6x.jpg" alt="Philosoraptor">
+    <img src="https://i.imgflip.com/4t0m5.jpg" alt="Drake Hotline Bling">
+    <img src="https://i.imgflip.com/30b1gx.jpg" alt="Mocking Spongebob">
+  </section>
+
+  <h2>Todos los Memes</h2>
+  <section class="gallery" id="gallery">
+    <img src="https://i.imgflip.com/2za3r2.jpg" alt="Trollface">
+    <img src="https://i.imgur.com/2K4KVwq.gif" alt="Dancing Baby">
+    <img src="https://i.imgflip.com/1bip.jpg" alt="Bad Luck Brian">
+    <img src="https://i.imgur.com/WIUPQZE.jpg" alt="Leeroy Jenkins">
+    <img src="https://i.imgur.com/9VhKr6p.jpg" alt="Charlie Bit My Finger">
+    <img src="https://i.imgur.com/9Rj6Ryz.jpg" alt="Doge">
+    <img src="https://i.imgur.com/fE0VmL5.jpg" alt="Pepe the Frog">
+    <img src="https://i.imgur.com/C7a0vS5.jpg" alt="Distracted Boyfriend">
+    <img src="https://i.imgur.com/ekvU2ae.jpg" alt="Woman Yelling at a Cat">
+    <img src="https://i.imgur.com/tZCg1OX.jpg" alt="Expanding Brain">
+    <img src="https://i.imgur.com/Cj2xv3P.jpg" alt="Giga Chad">
+    <img src="https://i.imgur.com/Gn2bNqN.png" alt="Skibidi Toilet">
+    <img src="https://i.imgur.com/XJ0yOye.jpg" alt="NPC meme">
+    <img src="https://i.imgur.com/7ZgrXxz.jpg" alt="Sigma Grindset">
+    <img src="https://i.imgur.com/Onq4x2e.jpg" alt="Shrek">
+  </section>
+
+  <footer>
+    <p>Memes para todos © 2025</p>
+  </footer>
+
+  <audio id="soundEffect" src="https://www.myinstants.com/media/sounds/cartoon-jump.mp3" preload="auto"></audio>
+
+  <script>
+    function toggleDarkMode() {
+      document.body.classList.toggle('dark-mode');
+    }
+
+    function loadRandomMeme() {
+      const memes = [
+        'https://i.imgflip.com/2za3r2.jpg',
+        'https://i.imgur.com/2K4KVwq.gif',
+        'https://i.imgflip.com/1bip.jpg',
+        'https://i.imgur.com/WIUPQZE.jpg',
+        'https://i.imgur.com/9VhKr6p.jpg',
+        'https://i.imgur.com/9Rj6Ryz.jpg',
+        'https://i.imgur.com/fE0VmL5.jpg',
+        'https://i.imgur.com/C7a0vS5.jpg',
+        'https://i.imgur.com/ekvU2ae.jpg',
+        'https://i.imgur.com/tZCg1OX.jpg',
+        'https://i.imgur.com/Cj2xv3P.jpg',
+        'https://i.imgur.com/Gn2bNqN.png',
+        'https://i.imgur.com/XJ0yOye.jpg',
+        'https://i.imgur.com/7ZgrXxz.jpg',
+        'https://i.imgur.com/Onq4x2e.jpg'
+      ];
+      const gallery = document.getElementById('gallery');
+      const randomMeme = memes[Math.floor(Math.random() * memes.length)];
+      const img = document.createElement('img');
+      img.src = randomMeme;
+      img.alt = 'Meme Aleatorio';
+      img.classList.add('new-meme');
+      gallery.appendChild(img);
+
+      // Reproducir sonido
+      const sound = document.getElementById('soundEffect');
+      sound.currentTime = 0;
+      sound.play();
+    }
+
+    function searchMemes() {
+      const input = document.getElementById('searchInput').value.toLowerCase();
+      const images = document.querySelectorAll('.gallery img, .popular img');
+      images.forEach(img => {
+        const altText = img.alt.toLowerCase();
+        if (altText.includes(input)) {
+          img.style.display = '';
+        } else {
+          img.style.display = 'none';
+        }
+      });
+    }
+  </script>
+</body>
+</html>
